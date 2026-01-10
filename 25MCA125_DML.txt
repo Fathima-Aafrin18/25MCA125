@@ -1,0 +1,177 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| blocktest1         |
+| blocktest2         |
+| college_db         |
+| db                 |
+| employeepayroll    |
+| information_schema |
+| jdbc               |
+| models             |
+| mysql              |
+| payroll            |
+| performance_schema |
+| sys                |
++--------------------+
+12 rows in set (0.01 sec)
+
+mysql> create database company_db;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use company_db;
+Database changed
+mysql> CREATE TABLE employees (
+    -> emp_id INT PRIMARY KEY,
+    -> emp_name VARCHAR(50),
+    -> department VARCHAR(30),
+    -> salary DECIMAL(10,2),
+    -> join_date DATE
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc employees;
++------------+---------------+------+-----+---------+-------+
+| Field      | Type          | Null | Key | Default | Extra |
++------------+---------------+------+-----+---------+-------+
+| emp_id     | int           | NO   | PRI | NULL    |       |
+| emp_name   | varchar(50)   | YES  |     | NULL    |       |
+| department | varchar(30)   | YES  |     | NULL    |       |
+| salary     | decimal(10,2) | YES  |     | NULL    |       |
+| join_date  | date          | YES  |     | NULL    |       |
++------------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO employees VALUES
+    -> (101, 'Arun', 'IT', 30000, '2023-06-10'),
+    -> (102, 'Meena', 'HR', 25000, '2022-03-15'),
+    -> (103, 'Ravi', 'Finance', 28000, '2021-12-01');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from employees;
++--------+----------+------------+----------+------------+
+| emp_id | emp_name | department | salary   | join_date  |
++--------+----------+------------+----------+------------+
+|    101 | Arun     | IT         | 30000.00 | 2023-06-10 |
+|    102 | Meena    | HR         | 25000.00 | 2022-03-15 |
+|    103 | Ravi     | Finance    | 28000.00 | 2021-12-01 |
++--------+----------+------------+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT emp_name, salary FROM employees WHERE department =
+    -> 'IT'
+    -> ;
++----------+----------+
+| emp_name | salary   |
++----------+----------+
+| Arun     | 30000.00 |
++----------+----------+
+1 row in set (0.00 sec)
+
+mysql> UPDATE employees
+    -> SET salary = salary + 5000
+    -> WHERE department = 'IT';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> delete from employees where emp_id=103;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO employees VALUES
+    -> (101, 'Arun', 'IT', 30000, '2023-06-10'),
+    -> (102, 'Meena', 'HR', 25000, '2022-03-15'),
+    -> (103, 'Ravi', 'Finance', 28000, '2021-12-01')
+    -> ^C
+mysql> INSERT INTO employees VALUES
+    -> (104, 'Arya', 'IT', 20000, '2023-06-11'),
+    -> (105, 'Durga', 'HR', 30000, '2023-06-13'),
+    -> (106, 'Divya', 'IT', 35000, '2023-06-15'),
+    -> (107, 'Devi', 'Finance', 20000, '2023-06-17'),
+    -> (108, 'Indhu', 'IT', 60000, '2023-05-17'),
+    -> (109, 'Suha', 'IT', 70000, '2023-05-19');
+Query OK, 6 rows affected (0.02 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from employees;
++--------+----------+------------+----------+------------+
+| emp_id | emp_name | department | salary   | join_date  |
++--------+----------+------------+----------+------------+
+|    101 | Arun     | IT         | 35000.00 | 2023-06-10 |
+|    102 | Meena    | HR         | 25000.00 | 2022-03-15 |
+|    104 | Arya     | IT         | 20000.00 | 2023-06-11 |
+|    105 | Durga    | HR         | 30000.00 | 2023-06-13 |
+|    106 | Divya    | IT         | 35000.00 | 2023-06-15 |
+|    107 | Devi     | Finance    | 20000.00 | 2023-06-17 |
+|    108 | Indhu    | IT         | 60000.00 | 2023-05-17 |
+|    109 | Suha     | IT         | 70000.00 | 2023-05-19 |
++--------+----------+------------+----------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select emp_name from employees where department='HR';
++----------+
+| emp_name |
++----------+
+| Meena    |
+| Durga    |
++----------+
+2 rows in set (0.00 sec)
+
+mysql> update employees set salary=salary*(10/100) where department='finance';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employees;
++--------+----------+------------+----------+------------+
+| emp_id | emp_name | department | salary   | join_date  |
++--------+----------+------------+----------+------------+
+|    101 | Arun     | IT         | 35000.00 | 2023-06-10 |
+|    102 | Meena    | HR         | 25000.00 | 2022-03-15 |
+|    104 | Arya     | IT         | 20000.00 | 2023-06-11 |
+|    105 | Durga    | HR         | 30000.00 | 2023-06-13 |
+|    106 | Divya    | IT         | 35000.00 | 2023-06-15 |
+|    107 | Devi     | Finance    |  2000.00 | 2023-06-17 |
+|    108 | Indhu    | IT         | 60000.00 | 2023-05-17 |
+|    109 | Suha     | IT         | 70000.00 | 2023-05-19 |
++--------+----------+------------+----------+------------+
+8 rows in set (0.00 sec)
+
+mysql> update employees set salary=salary+(salary*10/100) where department='finance';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employees;
++--------+----------+------------+----------+------------+
+| emp_id | emp_name | department | salary   | join_date  |
++--------+----------+------------+----------+------------+
+|    101 | Arun     | IT         | 35000.00 | 2023-06-10 |
+|    102 | Meena    | HR         | 25000.00 | 2022-03-15 |
+|    104 | Arya     | IT         | 20000.00 | 2023-06-11 |
+|    105 | Durga    | HR         | 30000.00 | 2023-06-13 |
+|    106 | Divya    | IT         | 35000.00 | 2023-06-15 |
+|    107 | Devi     | Finance    |  2200.00 | 2023-06-17 |
+|    108 | Indhu    | IT         | 60000.00 | 2023-05-17 |
+|    109 | Suha     | IT         | 70000.00 | 2023-05-19 |
++--------+----------+------------+----------+------------+
+8 rows in set (0.00 sec)
+
+mysql> delete from employees where join_date<'2022-01-01';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from employees;
++--------+----------+------------+----------+------------+
+| emp_id | emp_name | department | salary   | join_date  |
++--------+----------+------------+----------+------------+
+|    101 | Arun     | IT         | 35000.00 | 2023-06-10 |
+|    102 | Meena    | HR         | 25000.00 | 2022-03-15 |
+|    104 | Arya     | IT         | 20000.00 | 2023-06-11 |
+|    105 | Durga    | HR         | 30000.00 | 2023-06-13 |
+|    106 | Divya    | IT         | 35000.00 | 2023-06-15 |
+|    107 | Devi     | Finance    |  2200.00 | 2023-06-17 |
+|    108 | Indhu    | IT         | 60000.00 | 2023-05-17 |
+|    109 | Suha     | IT         | 70000.00 | 2023-05-19 |
++--------+----------+------------+----------+------------+
+8 rows in set (0.00 sec)
+
+mysql> Terminal close -- exit!
