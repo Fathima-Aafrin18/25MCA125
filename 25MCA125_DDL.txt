@@ -1,0 +1,214 @@
+mysql> create database library_db;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use library_db;
+Database changed
+mysql> create table authors(author_id int primary key,author_name varchar(100) not null,email varchar(100) unique);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc authors;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| author_id   | int          | NO   | PRI | NULL    |       |
+| author_name | varchar(100) | NO   |     | NULL    |       |
+| email       | varchar(100) | YES  | UNI | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> create table books(book_id int primary key,title varchar(150) not null,author_id int,price decimal(8,2) check(price>0),status varchar(20) default 'available',foreign key(author_id) references authors(author_id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc books;
++-----------+--------------+------+-----+-----------+-------+
+| Field     | Type         | Null | Key | Default   | Extra |
++-----------+--------------+------+-----+-----------+-------+
+| book_id   | int          | NO   | PRI | NULL      |       |
+| title     | varchar(150) | NO   |     | NULL      |       |
+| author_id | int          | YES  | MUL | NULL      |       |
+| price     | decimal(8,2) | YES  |     | NULL      |       |
+| status    | varchar(20)  | YES  |     | available |       |
++-----------+--------------+------+-----+-----------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table members(member_id int primary key,member_name varchar(100) not null,phone varchar(15) unique,join_date date);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc members;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| member_id   | int          | NO   | PRI | NULL    |       |
+| member_name | varchar(100) | NO   |     | NULL    |       |
+| phone       | varchar(15)  | YES  | UNI | NULL    |       |
+| join_date   | date         | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table issue_records(issue_id int primary key,book_id int,member_id int,issue_date date not null,return_date date,foreign key(book_id) references books(book_id),foreign key(member_id) references members(member_id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc issue_records;
++-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| issue_id    | int  | NO   | PRI | NULL    |       |
+| book_id     | int  | YES  | MUL | NULL    |       |
+| member_id   | int  | YES  | MUL | NULL    |       |
+| issue_date  | date | NO   |     | NULL    |       |
+| return_date | date | YES  |     | NULL    |       |
++-------------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table books add publisher varchar(100);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc books;
++-----------+--------------+------+-----+-----------+-------+
+| Field     | Type         | Null | Key | Default   | Extra |
++-----------+--------------+------+-----+-----------+-------+
+| book_id   | int          | NO   | PRI | NULL      |       |
+| title     | varchar(150) | NO   |     | NULL      |       |
+| author_id | int          | YES  | MUL | NULL      |       |
+| price     | decimal(8,2) | YES  |     | NULL      |       |
+| status    | varchar(20)  | YES  |     | available |       |
+| publisher | varchar(100) | YES  |     | NULL      |       |
++-----------+--------------+------+-----+-----------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table books modify publisher varchar(50);
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc books;
++-----------+--------------+------+-----+-----------+-------+
+| Field     | Type         | Null | Key | Default   | Extra |
++-----------+--------------+------+-----+-----------+-------+
+| book_id   | int          | NO   | PRI | NULL      |       |
+| title     | varchar(150) | NO   |     | NULL      |       |
+| author_id | int          | YES  | MUL | NULL      |       |
+| price     | decimal(8,2) | YES  |     | NULL      |       |
+| status    | varchar(20)  | YES  |     | available |       |
+| publisher | varchar(50)  | YES  |     | NULL      |       |
++-----------+--------------+------+-----+-----------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table books drop publisher; 
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc books;
++-----------+--------------+------+-----+-----------+-------+
+| Field     | Type         | Null | Key | Default   | Extra |
++-----------+--------------+------+-----+-----------+-------+
+| book_id   | int          | NO   | PRI | NULL      |       |
+| title     | varchar(150) | NO   |     | NULL      |       |
+| author_id | int          | YES  | MUL | NULL      |       |
+| price     | decimal(8,2) | YES  |     | NULL      |       |
+| status    | varchar(20)  | YES  |     | available |       |
++-----------+--------------+------+-----+-----------+-------+
+5 rows in set (0.00 sec)
+
+mysql> rename table members to library_members;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc library_members;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| member_id   | int          | NO   | PRI | NULL    |       |
+| member_name | varchar(100) | NO   |     | NULL    |       |
+| phone       | varchar(15)  | YES  | UNI | NULL    |       |
+| join_date   | date         | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> truncate table issue_records;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc issue_records;
++-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| issue_id    | int  | NO   | PRI | NULL    |       |
+| book_id     | int  | YES  | MUL | NULL    |       |
+| member_id   | int  | YES  | MUL | NULL    |       |
+| issue_date  | date | NO   |     | NULL    |       |
+| return_date | date | YES  |     | NULL    |       |
++-------------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> show create table books;
++-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
++-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| books | CREATE TABLE `books` (
+  `book_id` int NOT NULL,
+  `title` varchar(150) NOT NULL,
+  `author_id` int DEFAULT NULL,
+  `price` decimal(8,2) DEFAULT NULL,
+  `status` varchar(20) DEFAULT 'available',
+  PRIMARY KEY (`book_id`),
+  KEY `author_id` (`author_id`),
+  CONSTRAINT `books_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`author_id`),
+  CONSTRAINT `books_chk_1` CHECK ((`price` > 0))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> alter table books drop foreign key books_ibfk_1;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table books
+    -> add constraint fk_book_id
+    -> foreign key (book_id)
+    -> references issue_records(book_id)
+    -> on delete set null;
+ERROR 1830 (HY000): Column 'book_id' cannot be NOT NULL: needed in a foreign key constraint 'fk_book_id' SET NULL
+mysql> show create table issue_records;
++---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table         | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
++---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| issue_records | CREATE TABLE `issue_records` (
+  `issue_id` int NOT NULL,
+  `book_id` int DEFAULT NULL,
+  `member_id` int DEFAULT NULL,
+  `issue_date` date NOT NULL,
+  `return_date` date DEFAULT NULL,
+  PRIMARY KEY (`issue_id`),
+  KEY `book_id` (`book_id`),
+  KEY `member_id` (`member_id`),
+  CONSTRAINT `issue_records_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`),
+  CONSTRAINT `issue_records_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `library_members` (`member_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> alter table issue_records drop foreign key issue_records_ibfk_1;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table issue_records
+    -> add constraint fk_book_id
+    -> foreign key (book_id)
+    -> references books(book_id)
+    -> on delete set null;
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table issue_records drop foreign key fk_book_id;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> drop table books;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> drop database library_db;
+Query OK, 3 rows affected (0.04 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> Terminal close -- exit!
