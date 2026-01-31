@@ -1,0 +1,69 @@
+mysql> SELECT COUNT(*) AS total_employees
+    -> FROM employees;
++-----------------+
+| total_employees |
++-----------------+
+|               4 |
++-----------------+
+1 row in set (0.02 sec)
+
+mysql> SELECT AVG(salary) AS average_salary
+    -> FROM employees;
++----------------+
+| average_salary |
++----------------+
+|   60000.000000 |
++----------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT ROUND(AVG(salary), 2) AS average_salary
+    -> FROM employees;
++----------------+
+| average_salary |
++----------------+
+|       60000.00 |
++----------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT MAX(salary) AS highest_salary
+    -> FROM employees;
++----------------+
+| highest_salary |
++----------------+
+|       75000.00 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MIN(salary) AS lowest_marketing_salary
+    -> FROM employees
+    -> WHERE department = 'Marketing';
++-------------------------+
+| lowest_marketing_salary |
++-------------------------+
+|                    NULL |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MIN(salary) AS lowest_marketing_salary
+    -> FROM employees;
++-------------------------+
+| lowest_marketing_salary |
++-------------------------+
+|                45000.00 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SUM(salary) AS total_it_salary
+    -> FROM employees
+    -> WHERE department = 'IT';
++-----------------+
+| total_it_salary |
++-----------------+
+|       140000.00 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>  tee D:\fathima kg\MCA\Addon\part_C.txt
