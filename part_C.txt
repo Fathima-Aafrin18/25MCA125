@@ -1,0 +1,79 @@
+mysql> SELECT 
+    ->     department,
+    ->     COUNT(*) AS employee_count
+    -> FROM employees
+    -> GROUP BY department
+    -> ORDER BY employee_count DESC;
++------------+----------------+
+| department | employee_count |
++------------+----------------+
+| IT         |              2 |
+| FINANCE    |              1 |
+| HR         |              1 |
++------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT 
+    ->     department,
+    ->     ROUND(AVG(salary), 2) AS average_salary
+    -> FROM employees
+    -> GROUP BY department
+    -> ORDER BY average_salary DESC;
++------------+----------------+
+| department | average_salary |
++------------+----------------+
+| IT         |       70000.00 |
+| FINANCE    |       55000.00 |
+| HR         |       45000.00 |
++------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT 
+    ->     department,
+    ->     MAX(experience_years) AS max_experience
+    -> FROM employees
+    -> GROUP BY department
+    -> ORDER BY max_experience DESC;
++------------+----------------+
+| department | max_experience |
++------------+----------------+
+| IT         |              5 |
+| FINANCE    |              2 |
+| HR         |              1 |
++------------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT 
+    ->     department,
+    ->     SUM(salary) AS total_salary
+    -> FROM employees
+    -> GROUP BY department
+    -> ORDER BY total_salary DESC;
++------------+--------------+
+| department | total_salary |
++------------+--------------+
+| IT         |    140000.00 |
+| FINANCE    |     55000.00 |
+| HR         |     45000.00 |
++------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT 
+    ->     department,
+    ->     ROUND(AVG(salary), 2) AS average_salary
+    -> FROM employees
+    -> GROUP BY department
+    -> ORDER BY average_salary DESC;
++------------+----------------+
+| department | average_salary |
++------------+----------------+
+| IT         |       70000.00 |
+| FINANCE    |       55000.00 |
+| HR         |       45000.00 |
++------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> tee D:\fathima kg\MCA\Addon\part_D.txt
