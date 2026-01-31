@@ -1,0 +1,82 @@
+mysql> INSERT INTO employees VALUES
+    -> (1005, 'DURGA', 'DEVI', 'IT', 85000, 8, '2016-03-15', 'durga@gmail.com'),
+    -> (1006, 'TAMIL', 'MANI', 'HR', 62000, 4, '2020-08-10', 'tamil@gmail.com'),
+    -> (1007, 'DIVYA', 'BHARATHI', 'FINANCE', 78000, 9, '2015-11-25', 'divya@gmail.com');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM employees;
++-------------+------------+-----------+------------+----------+------------------+------------+------------------+
+| employee_id | first_name | last_name | department | salary   | experience_years | hire_date  | email            |
++-------------+------------+-----------+------------+----------+------------------+------------+------------------+
+|        1001 | FATHIMA    | AAFRIN    | IT         | 75000.00 |                5 | 2022-10-18 | aafrin@gmail.com |
+|        1002 | JEROMI     | RICHANA   | IT         | 65000.00 |                3 | 2023-06-16 | jero@gmail.com   |
+|        1003 | VISHU      | PRIYA     | FINANCE    | 55000.00 |                2 | 2024-12-07 | vishu@gmail.com  |
+|        1004 | HEMA       | PATEL     | HR         | 45000.00 |                1 | 2025-04-24 | hema@gmail.com   |
+|        1005 | DURGA      | DEVI      | IT         | 85000.00 |                8 | 2016-03-15 | durga@gmail.com  |
+|        1006 | TAMIL      | MANI      | HR         | 62000.00 |                4 | 2020-08-10 | tamil@gmail.com  |
+|        1007 | DIVYA      | BHARATHI  | FINANCE    | 78000.00 |                9 | 2015-11-25 | divya@gmail.com  |
++-------------+------------+-----------+------------+----------+------------------+------------+------------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT department, COUNT(*) AS employee_count
+    -> FROM employees
+    -> GROUP BY department
+    -> HAVING COUNT(*) > 1;
++------------+----------------+
+| department | employee_count |
++------------+----------------+
+| IT         |              3 |
+| FINANCE    |              2 |
+| HR         |              2 |
++------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT department, ROUND(AVG(salary), 2) AS average_salary
+    -> FROM employees
+    -> GROUP BY department
+    -> HAVING AVG(salary) > 70000;
++------------+----------------+
+| department | average_salary |
++------------+----------------+
+| IT         |       75000.00 |
++------------+----------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT department, SUM(salary) AS total_salary
+    -> FROM employees
+    -> GROUP BY department
+    -> HAVING SUM(salary) > 150000;
++------------+--------------+
+| department | total_salary |
++------------+--------------+
+| IT         |    225000.00 |
++------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT department, MAX(experience_years) AS max_experience
+    -> FROM employees
+    -> GROUP BY department
+    -> HAVING MAX(experience_years) > 7;
++------------+----------------+
+| department | max_experience |
++------------+----------------+
+| IT         |              8 |
+| FINANCE    |              9 |
++------------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT department, MIN(salary) AS min_salary
+    -> FROM employees
+    -> GROUP BY department
+    -> HAVING MIN(salary) > 60000;
++------------+------------+
+| department | min_salary |
++------------+------------+
+| IT         |   65000.00 |
++------------+------------+
+1 row in set (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.00 sec)
+
