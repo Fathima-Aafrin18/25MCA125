@@ -1,0 +1,24 @@
+package Looping_Statements;
+
+import java.util.Scanner;
+
+public class SumOfNumbers {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a number (n): ");
+        int n = sc.nextInt();
+        
+        System.out.println("Sample Input: " + n);
+        
+        // Calculate sum
+        int sum = 0;
+        for (int i = 1; i <= n; i++) {
+            sum += i;
+        }
+        
+        System.out.println("Sample Output: " + sum);
+        
+        sc.close();
+    }
+}
