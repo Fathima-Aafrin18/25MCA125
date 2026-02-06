@@ -1,0 +1,17 @@
+package String;
+
+class CountTypes {
+    public static void main(String[] args) {
+        String s = "Hello@123";
+        int a = 0, d = 0, sp = 0;
+
+        for (char c : s.toCharArray()) {
+            if (Character.isLetter(c)) a++;
+            else if (Character.isDigit(c)) d++;
+            else sp++;
+        }
+        System.out.println("Alphabets: " + a);
+        System.out.println("Numbers: " + d);
+        System.out.println("Specials: " + sp);
+    }
+}
