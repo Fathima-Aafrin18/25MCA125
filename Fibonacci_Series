@@ -1,0 +1,40 @@
+package Looping_Statements;
+
+import java.util.Scanner;
+
+public class FibonacciSeries {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter number of terms: ");
+        int n = sc.nextInt();
+        
+        System.out.println("Sample Input: " + n);
+        System.out.print("Sample Output: ");
+        
+        // Handle special cases
+        if (n <= 0) {
+            System.out.println("Please enter a positive number");
+        } else if (n == 1) {
+            System.out.println("0");
+        } else {
+            int first = 0, second = 1;
+            
+            // Print first two terms
+            System.out.print(first + " " + second);
+            
+            // Generate remaining terms
+            for (int i = 3; i <= n; i++) {
+                int next = first + second;
+                System.out.print(" " + next);
+                
+                // Update for next iteration
+                first = second;
+                second = next;
+            }
+        }
+        
+        System.out.println(); // New line
+        sc.close();
+    }
+}
