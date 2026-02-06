@@ -1,0 +1,35 @@
+package Operators;
+
+import java.util.Scanner;
+
+public class FindMaximum {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter 4 numbers separated by spaces: ");
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        int d = sc.nextInt();
+        
+        System.out.println("Sample Input: " + a + " " + b + " " + c + " " + d);
+        
+        // Find maximum using ternary operator
+        // First find max of a and b
+        int maxAB = (a > b) ? a : b;
+        
+        // Find max of c and d
+        int maxCD = (c > d) ? c : d;
+        
+        // Find max of maxAB and maxCD
+        int max = (maxAB > maxCD) ? maxAB : maxCD;
+        
+        // Alternative: Nested ternary operator for all 4 numbers
+        // int max = (a > b) ? ((a > c) ? ((a > d) ? a : d) : ((c > d) ? c : d)) 
+        //                  : ((b > c) ? ((b > d) ? b : d) : ((c > d) ? c : d));
+        
+        System.out.println("Maximum: " + max);
+        
+        sc.close();
+    }
+} 
