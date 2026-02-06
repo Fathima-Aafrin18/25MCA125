@@ -1,0 +1,23 @@
+package Operators;
+
+import java.util.Scanner;
+
+public class CheckAlphabet {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a character: ");
+        char ch = sc.next().charAt(0);
+        
+        System.out.println("Sample Input: " + ch);
+        
+        // Check if character is an alphabet
+        // Using ternary operator
+        String result = ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) 
+                       ? "Alphabet" : "Not an Alphabet";
+        
+        System.out.println("Expected Output: " + result);
+        
+        sc.close();
+    }
+}
