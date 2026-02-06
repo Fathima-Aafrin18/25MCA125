@@ -1,0 +1,27 @@
+package Looping_Statements;
+
+import java.util.Scanner;
+
+public class PrintNumbers {
+
+	public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a number (n): ");
+        int n = sc.nextInt();
+        
+        System.out.println("Sample Input: " + n);
+        System.out.print("Sample Output: ");
+        
+        // Print numbers from 1 to n
+        for (int i = 1; i <= n; i++) {
+            System.out.print(i);
+            if (i < n) {
+                System.out.print(" ");
+            }
+        }
+        
+        sc.close();
+    }
+
+}
