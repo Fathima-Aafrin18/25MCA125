@@ -1,0 +1,41 @@
+package Looping_Statements;
+import java.util.Scanner;
+
+public class OddEvenNumbersList {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a number (n): ");
+        int n = sc.nextInt();
+        
+        System.out.println("Sample Input: " + n);
+        
+        // Print odd numbers
+        System.out.print("Odd: ");
+        boolean hasOdd = false;
+        for (int i = 1; i <= n; i++) {
+            if (i % 2 != 0) {
+                System.out.print(i + " ");
+                hasOdd = true;
+            }
+        }
+        if (!hasOdd) {
+            System.out.print("No odd numbers");
+        }
+        
+        // Print even numbers
+        System.out.print("\nEven: ");
+        boolean hasEven = false;
+        for (int i = 1; i <= n; i++) {
+            if (i % 2 == 0) {
+                System.out.print(i + " ");
+                hasEven = true;
+            }
+        }
+        if (!hasEven) {
+            System.out.print("No even numbers");
+        }
+        
+        sc.close();
+    }
+}
