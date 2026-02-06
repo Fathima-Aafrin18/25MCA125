@@ -1,0 +1,26 @@
+package Operators;
+
+import java.util.Scanner;
+
+public class SwapWithTemp {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter first number (a): ");
+        int a = sc.nextInt();
+        
+        System.out.print("Enter second number (b): ");
+        int b = sc.nextInt();
+        
+        System.out.println("Sample Input: a = " + a + ", b = " + b);
+        
+        // Swap using temporary variable
+        int temp = a;
+        a = b;
+        b = temp;
+        
+        System.out.println("Expected Output: a = " + a + ", b = " + b);
+        
+        sc.close();
+    }
+}
