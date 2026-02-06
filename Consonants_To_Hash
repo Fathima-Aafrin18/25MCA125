@@ -1,0 +1,16 @@
+package String;
+
+class ConsonantsToHash {
+    public static void main(String[] args) {
+        String s = "Hello";
+        String result = "";
+
+        for (char c : s.toCharArray()) {
+            if (Character.isLetter(c) && "aeiouAEIOU".indexOf(c) == -1)
+                result += "#";
+            else
+                result += c;
+        }
+        System.out.println(result);
+    }
+}
