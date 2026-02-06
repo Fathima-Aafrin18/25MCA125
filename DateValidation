@@ -1,0 +1,42 @@
+package Conditional_Statements;
+
+import java.util.Scanner;
+
+class DateValidation {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String date = sc.next();
+
+        String[] parts = date.split("/");
+        int d = Integer.parseInt(parts[0]);
+        int m = Integer.parseInt(parts[1]);
+        int y = Integer.parseInt(parts[2]);
+
+        boolean valid = true;
+        int daysInMonth;
+
+        if (m<1||m>12) valid = false;
+        else {
+            switch (m) {
+                case 2:
+                    if ((y%400==0) || (y%4==0&&y%100!=0))
+                        daysInMonth = 29;
+                    else
+                        daysInMonth = 28;
+                    break;
+                case 4: case 6: case 9: case 11:
+                    daysInMonth = 30;
+                    break;
+                default:
+                    daysInMonth = 31;
+            }
+            if (d < 1 || d > daysInMonth) valid = false;
+        }
+
+        if (valid)
+            System.out.println("Valid Date");
+        else
+            System.out.println("Invalid Date");
+    sc.close();
+    }
+}
