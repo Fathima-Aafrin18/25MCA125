@@ -1,0 +1,25 @@
+package Looping_Statements;
+
+import java.util.Scanner;
+
+public class MultiplicationTable {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a number: ");
+        int num = sc.nextInt();
+        
+        System.out.println("Sample Input: " + num);
+        System.out.print("Sample Output: ");
+        
+        // Generate multiplication table up to 10
+        for (int i = 1; i <= 10; i++) {
+            System.out.print(num * i);
+            if (i < 10) {
+                System.out.print(" ");
+            }
+        }
+        
+        sc.close();
+    }
+}
