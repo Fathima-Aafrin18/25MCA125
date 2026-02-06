@@ -1,0 +1,15 @@
+package Arrays;
+
+class InverseMatrix {
+    public static void main(String[] args) {
+        double a=1, b=2, c=3, d=4;
+        double det = a*d - b*c;
+
+        if(det == 0){
+            System.out.println("Inverse not possible");
+        } else {
+            System.out.println((d/det)+" "+(-b/det));
+            System.out.println((-c/det)+" "+(a/det));
+        }
+    }
+}
