@@ -1,0 +1,44 @@
+package Looping_Statements;
+
+import java.util.Scanner;
+
+public class SumOfFactorials {
+    
+    // Method to calculate factorial
+    public static long factorial(int num) {
+        long fact = 1;
+        for (int i = 1; i <= num; i++) {
+            fact *= i;
+        }
+        return fact;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter how many numbers: ");
+        int count = sc.nextInt();
+        
+        System.out.print("Enter " + count + " numbers: ");
+        
+        long totalSum = 0;
+        
+        // Read each number, calculate its factorial, and add to total
+        for (int i = 0; i < count; i++) {
+            int num = sc.nextInt();
+            long fact = factorial(num);
+            totalSum += fact;
+            
+            // Optional: Show calculation steps
+            if (i == 0) {
+                System.out.print(num + "!");
+            } else {
+                System.out.print(" + " + num + "!");
+            }
+        }
+        
+        System.out.println(" = " + totalSum);
+        
+        sc.close();
+    }
+}
