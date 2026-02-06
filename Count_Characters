@@ -1,0 +1,9 @@
+package String;
+
+public class CountCharacters {
+	public static void main(String[] args) {
+        String s = "ChatGPT";
+        System.out.println("Count: " + s.length());
+    }
+
+}
