@@ -1,0 +1,107 @@
+package Car.Rental.System;
+
+import java.util.Scanner;
+
+public class CarRentalSystem {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Car Details
+        String[] carId = {
+        	    "C101", "C102", "C103", "C104", "C105",
+        	    "C106", "C107", "C108", "C109", "C110"
+        	};
+
+        String[] carName = {
+        	    "Maruti Swift",
+        	    "Hyundai Creta",
+        	    "Tata Nexon",
+        	    "Honda City",
+        	    "Toyota Innova",
+        	    "Mahindra XUV700",
+        	    "Kia Seltos",
+        	    "Maruti Baleno",
+        	    "Volkswagen Virtus",
+        	    "Skoda Slavia"
+        	};
+
+
+        	int[] pricePerDay = {
+        	    2000, 3000, 1500, 4500, 2800,
+        	    3500, 5000, 4000, 6000, 1800
+        	};
+
+        	boolean[] available = {
+        	    true, true, true, true, true,
+        	    true, true, true, true, true
+        	};
+
+        // 2. Select Car
+        System.out.print("\nEnter Car ID to Rent: ");
+        String selectedCarId = sc.nextLine();
+
+        int index = -1;
+        for (int i = 0; i < carId.length; i++) {
+            if (carId[i].equalsIgnoreCase(selectedCarId) && available[i]) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            System.out.println("Car not available!");
+            return;
+        }
+
+        System.out.println("Car Selected : " + carName[index]);
+        System.out.println("Price per Day : Rs." + pricePerDay[index]);
+
+        // 3. Enter Rental Days
+        System.out.print("\nEnter Number of Rental Days: ");
+        int days = sc.nextInt();
+
+        // 4. Calculate Rent
+        int totalRent = pricePerDay[index] * days;
+
+        System.out.println("\nRent Calculation");
+        System.out.println("----------------------------------------");
+        System.out.println("Rent per Day : Rs." + pricePerDay[index]);
+        System.out.println("Rental Days : " + days);
+        System.out.println("Total Rent  : Rs." + totalRent);
+
+        // 5. Apply Discount
+        double discountRate = 0.10; // 10%
+        double discountAmount = totalRent * discountRate;
+        double finalAmount = totalRent - discountAmount;
+
+        System.out.println("\nDiscount Applied");
+        System.out.println("----------------------------------------");
+        System.out.println("Discount Type : Festival Offer");
+        System.out.println("Discount      : 10%");
+        System.out.println("Discount Amt  : Rs." + discountAmount);
+        System.out.println("Final Amount  : Rs." + finalAmount);
+
+        // 6. Return Car
+        available[index] = true;
+        System.out.println("\nCar Returned Successfully!");
+        System.out.println("Return Status : Available");
+
+        // 7. Receipt
+        System.out.println("\n********* RENTAL RECEIPT *********");
+        System.out.println("Customer Name   : Fathima");
+        System.out.println("Car ID          : " + carId[index]);
+        System.out.println("Car Model       : " + carName[index]);
+        System.out.println("Rental Days     : " + days);
+        System.out.println("Rent per Day    : Rs." + pricePerDay[index]);
+        System.out.println("Total Rent      : Rs." + totalRent);
+        System.out.println("Discount (10%)  : Rs." + discountAmount);
+        System.out.println("Amount Paid     : Rs." + finalAmount);
+        System.out.println("----------------------------------------");
+        System.out.println("Thank You for Using Car Rental System");
+        System.out.println("**************************************");
+
+        sc.close();
+    }
+}
