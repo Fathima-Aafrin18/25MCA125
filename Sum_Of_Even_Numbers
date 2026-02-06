@@ -1,0 +1,35 @@
+package Looping_Statements;
+
+import java.util.Scanner;
+
+public class SumEvenOdd {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a number (n): ");
+        int n = sc.nextInt();
+        
+        System.out.println("Sample Input: " + n);
+        
+        // Initialize sums
+        int evenSum = 0;
+        int oddSum = 0;
+        
+        // Loop from 1 to n
+        for (int i = 1; i <= n; i++) {
+            if (i % 2 == 0) {
+                // Even number
+                evenSum += i;
+            } else {
+                // Odd number
+                oddSum += i;
+            }
+        }
+        
+        // Display results
+        System.out.println("Sample Output: Sum of Even = " + evenSum + 
+                         ", Sum of Odd = " + oddSum);
+        
+        sc.close();
+    }
+}
